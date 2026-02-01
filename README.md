@@ -1,96 +1,78 @@
-# a-little-secret-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Happy Valentine’s Day 💕</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Happy Valentine’s Day 💕</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ffb6c1, #ffd6e8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .slide {
-    display: none;
-    text-align: center;
-    padding: 30px;
-    max-width: 700px;
-    animation: fade 0.6s ease;
-  }
-
-  .slide.active {
-    display: block;
-  }
-
-  h1, h2 {
-    color: #d6336c;
-  }
-
-  p {
-    font-size: 1.4em;
-    color: #333;
-  }
-
-  button {
-    background-color: #ff4d6d;
-    color: white;
-    border: none;
-    padding: 15px 35px;
-    margin: 15px;
-    font-size: 1.2em;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease;
-  }
-
-  button:hover {
-    transform: scale(1.1);
-    background-color: #e63950;
-  }
-
-  .yes-spam {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  /* Hearts */
-  .hearts {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .heart {
-    position: absolute;
-    font-size: 28px;
-    animation: float 8s linear infinite;
-    opacity: 0.6;
-  }
-
-  @keyframes float {
-    from {
-      transform: translateY(100vh) rotate(0deg);
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ffd6e8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
     }
-    to {
-      transform: translateY(-10vh) rotate(360deg);
-    }
-  }
 
-  @keyframes fade {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-</style>
+    .slide {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      max-width: 700px;
+      animation: fade 0.6s ease;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    h1, h2 {
+      color: #d6336c;
+    }
+
+    p {
+      font-size: 1.4em;
+      color: #333;
+    }
+
+    button {
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 15px 35px;
+      margin: 15px;
+      font-size: 1.2em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #e63950;
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh) rotate(0deg); }
+      to { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 
 <body>
@@ -114,13 +96,13 @@
 <!-- SLIDE 3 -->
 <div class="slide">
   <h2>I’ve been thinking… 💭</h2>
-  <button onclick="nextSlide()">continue</button>
+  <button onclick="nextSlide()">okay...</button>
 </div>
 
 <!-- SLIDE 4 -->
 <div class="slide">
   <h2>Are you available February 14th? 😏</h2>
-  <button onclick="nextSlide()">maybe 👀</button>
+  <button onclick="nextSlide()">what.</button>
 </div>
 
 <!-- SLIDE 5 -->
@@ -134,8 +116,6 @@
   <h1>Will you be my valentines?!?!?!?! 💕</h1>
   <button onclick="yes()">YES</button>
   <button onclick="no()">NO</button>
-
-  <div class="yes-spam" id="yesSpam"></div>
 </div>
 
 <!-- SLIDE 7 -->
@@ -146,6 +126,12 @@
     HAPPY SOON TO BE VALENTINE’S DAY 💘
   </p>
 </div>
+
+<!-- Music -->
+<audio id="music" autoplay loop>
+  <source src="celebration.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
 <script>
   const slides = document.querySelectorAll('.slide');
@@ -164,18 +150,16 @@
   }
 
   function no() {
-    const container = document.getElementById('yesSpam');
-    container.innerHTML = '';
-
-    for (let i = 0; i < 15; i++) {
-      const btn = document.createElement('button');
-      btn.textContent = 'YES';
-      btn.onclick = yes;
-      container.appendChild(btn);
-    }
+    const btn = document.createElement('button');
+    btn.textContent = 'YES';
+    btn.style.position = 'absolute';
+    btn.style.left = Math.random() * 90 + 'vw';
+    btn.style.top = Math.random() * 80 + 'vh';
+    btn.onclick = yes;
+    document.body.appendChild(btn);
   }
 
-  // Create floating hearts
+  // Floating hearts
   const heartContainer = document.querySelector('.hearts');
   for (let i = 0; i < 35; i++) {
     const heart = document.createElement('div');
@@ -189,3 +173,4 @@
 
 </body>
 </html>
+
